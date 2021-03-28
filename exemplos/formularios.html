@@ -1,0 +1,271 @@
+<h2>input(enable, disable)</h2>
+<pre>
+fafm.input('disable', 'input_id_texto');
+fafm.input('enable', 'input_id_texto');
+fafm.insert_value('input_id_texto', 'Fabricio');
+</pre>
+<input type="text" id="input_id_texto" name="input_name_texto" value="testando..."> &nbsp;
+<a href="javascript:fafm.input('disable', 'input_id_texto');">desabilitar input</a> &nbsp;
+<a href="javascript:fafm.input('enable', 'input_id_texto');">habilitar input</a> &nbsp;
+<a href="javascript:fafm.insert_value('input_id_texto', 'Fabricio');">Inserir "Fabricio" no input</a>
+<hr>
+
+<h2>formatMoeda</h2>
+<pre>
+fafm.format_moeda(Valor, precisaoDecimal);
+</pre>
+<span>formatMoeda(123.456, 2) =</span><span id="valor_arredondado"></span>
+<a href="javascript:arredonda_valor();">clica pra ver</a><br>
+<hr>
+
+<h2>auto tabs</h2>
+<pre>
+$(document).ready(function(){
+	$('#primeiro').focus(function(){
+		fafm.auto_val(this, '5 digitos'); 
+		}).blur(function(){
+		fafm.auto_val(this, '5 digitos');
+		}).keypress(function(){
+		fafm.tab(this, 5, 'segundo');
+		});
+	$('#segundo').focus(function(){
+		fafm.auto_val(this, '3 digitos');
+		}).blur(function(){
+		fafm.auto_val(this, '3 digitos');
+		}).keypress(function(){
+		fafm.tab(this, 3, 'terceiro');
+		});
+	$('#terceiro').focus(function(){
+		fafm.auto_val(this, '1 digito');
+		}).blur(function(){
+		fafm.auto_val(this, '1 digito');
+		});
+
+});
+</pre>
+<input type="text" name='primeiro' id='primeiro' size='8' maxlength="5" value="5 digitos"> -
+<input type="text" name='segundo' id='segundo' size='8' maxlength="3" value="3 digitos"> -
+<input type="text" name='terceiro' id='terceiro' size='8' maxlength="1" value="1 digito">
+<hr>
+
+<h2>auto format e validação de forms </h2>
+validação:
+<pre>
+function teste_valida_forms()
+{
+	if ( !fafm.valida_form_fields( Array('telefone', 'cep', 'cpf', 'cnpj', 'mensagem', 'email'), 'testeFormulario') ){
+		return false;
+	}
+	if ( verifica_cpf_cnpj_email() ){
+		alert('form.submit');
+	}else{
+		alert('form not submit');
+	}
+	return false;
+}
+function verifica_cpf_cnpj_email()
+{
+	cpf = $('#cpf').val();
+	cnpj = $('#cnpj').val();
+	email= $('#email').val();
+	var erro = 0;
+	if ( fafm.is_cpf(cpf) ){
+		txt = cpf ok
+	}else{ 
+		txt = cpf errado
+		erro++;
+		fafm.auto_focus('cpf');
+	}
+	if ( fafm.is_cnpj(cnpj) ){
+		txt += cnpj ok
+	}else {
+		txt += erro no cnpj
+		erro++;
+		fafm.auto_focus('cnpj');
+	}
+	if ( fafm.is_email(email) ){
+		txt += email ok
+	}else{
+		txt += erro no email
+		erro++;
+		fafm.auto_focus('email');
+	}
+	fafm.id('cpfcnpjemailresposta', txt);
+	return ( erro == 0 );
+}
+</pre>
+formatação de campos:
+<pre>
+// --- jquery_masks - http://digitalbush.com/projects/masked-input-plugin/
+jQuery(function($){
+	$("#telefone").mask("(99) 9999-9999",{completed:function(){ fafm.auto_focus('cep');}});
+	$('#cep').mask("99999-999", {completed:function(){ fafm.auto_focus('cpf');}});
+	$('#cpf').mask("999.999.999-99", {completed:function(){ fafm.auto_focus('cnpj');}});
+	$('#cnpj').mask("99.999.999/9999-99", {completed:function(){ fafm.auto_focus('mensagem');}});
+});
+// --- jquery prettynumber
+&lt;div id="number1"&gt;1234567123672&lt;/div&gt;
+&lt;div id="number2"&gt;12345622237123672&lt;/div&gt;
+a) $("#number1").prettynumber(); 
+b) $("#number2").prettynumber({ delimiter : ',' }); 
+</pre>
+a) <div style="display:inline;" id="number1">1234567123672</div><br>
+b) <div style="display:inline;" id="number2">12345622237123672</div>
+
+<form name="testeFormulario" onsubmit="return teste_valida_forms();">
+<span>telefone</span><br>
+<input type="text" name="telefone" id="telefone"><br>
+<span>cep</span><br>
+<input type="text" name="cep" id="cep"><br>
+<span>cpf</span><br>
+<input type="text" name="cpf" id="cpf"><br>
+<span>cnpj</span><br>
+<input type="text" name="cnpj" id="cnpj"><br>
+<span>Mensagem
+<small>c/ max_length(mensagem, 10, 'avisoMsg') -> char.restantes: 
+		<span style="background:#fff; color:#000;" id="avisoMsg">10</span></small>
+</span>
+<br>
+<textarea name="mensagem" id="mensagem"
+		onkeyup="fafm.max_length(this, 11, true, 'avisoMsg');"
+		onkeydown="fafm.max_length(this, 11, true, 'avisoMsg');"></textarea><br>
+<span>Email</span><br>
+<input type="text" name="email" id="email"><br>
+<span class="mouse" onclick="verifica_cpf_cnpj_email();">clica para checar funcs.valida cpf, cnpj e email</span><br>
+<span id="cpfcnpjemailresposta"></span>
+<p><input type="submit" value="enviar(checar_valida_forms)">
+</form>
+<hr>
+
+<h2> inserindo/pegando valores em elementos</h2>
+<pre>
+fafm.id('spanRecebeValor', '&lt;strong&gt;OI&lt;/strong&gt;');
+</pre>
+<a href="javascript:fafm.id('spanRecebeValor', '<strong>OI</strong>');">inserir OI</a> &nbsp; <span id="spanRecebeValor"></span><br>
+<pre>
+fafm.id('spanSemTexto', fafm.id('spanComTexto'));
+</pre>
+<span id="spanComTexto"><strong><i>Tchau</i></strong></span> &nbsp; 
+<a href="javascript:fafm.id('spanSemTexto', fafm.id('spanComTexto'));">pegando valor</a> &nbsp; 
+<span id="spanSemTexto"></span><br>
+<i>Obs: como o 2o parametro do metodo id nao foi setado, é retornado todo o elemento da span com texto, inclusive o negrito itálico.</i>
+<hr>
+
+<h2>função format_float_val</h2>
+<pre>
+fafm.format_float_val(valorInput); -> usa funcao fafm.replace_all(input, alvo, novo);
+Função usada neste exemplo:
+function exemplo_float_val()
+{
+	input_id = 'teste_formata_valor_float';
+	input_val = document.getElementById(id).value;
+	fafm.insert_value(input_id, fafm.format_float_val(input_val) );
+}
+</pre>
+digite valor: <input type="text" name="teste_formata_valor_float" id="teste_formata_valor_float" value=""><a href="javascript:exemplo_float_val();">formata float val</a>
+
+<h2>placeholder</h2>
+<pre>
+placeholder.init(elementoId, texto, [colorOn padrao=gray], [colorOff padrao=black] );
+script:
+&lt;input type="text" id="testePlaceholder" placeholder="placeholder original"&gt;
+placeholder.colorOn = 'yellow';
+placeholder.colorOff = 'olive';
+placeholder.init('testePlaceholder', 'placeholder via js');
+</pre>	
+<input type="text" id="testePlaceholder" placeholder="placeholder original">
+<i>obs: a maioria dos novos navegadores já possuem o atributo placeholder, logo, essa função é util somente para navegadores antigos (IE 9 &lt; etc) </i>
+	
+	
+	
+	
+	
+<script>
+placeholder.colorOn = 'yellow';
+placeholder.colorOff = 'olive';
+placeholder.init('testePlaceholder', 'placeholder via js');
+function exemplo_float_val()
+{
+	input_id = 'teste_formata_valor_float';
+	input_val = $('#'+input_id).val();
+	fafm.insert_value(input_id, fafm.format_float_val(input_val) );
+}
+function arredonda_valor() { $('#valor_arredondado').html(fafm.format_moeda(123.456, 2)); }
+function teste_valida_forms()
+{
+	if ( !fafm.valida_form_fields( Array('telefone', 'cep', 'cpf', 'cnpj', 'mensagem', 'email'), 'testeFormulario') ){
+		return false;
+	}
+	if ( verifica_cpf_cnpj_email() ){
+		alert('form.submit');
+	}else{
+		alert('form not submit');
+	}
+	return false;
+}
+function verifica_cpf_cnpj_email()
+{
+	cpf = $('#cpf').val();
+	cnpj = $('#cnpj').val();
+	email= $('#email').val();
+	var erro = 0;
+	if ( fafm.is_cpf(cpf) ){
+		txt = 'cpf ok<br>'
+	}else{ 
+		txt = 'cpf errado<br>';
+		erro++;
+		fafm.auto_focus('cpf');
+	}
+	if ( fafm.is_cnpj(cnpj) ){
+		txt += 'cnpj ok<br>';
+	}else {
+		txt += 'erro no cnpj<br>';
+		erro++;
+		fafm.auto_focus('cnpj');
+	}
+	if ( fafm.is_email(email) ){
+		txt += 'email ok<br>';
+	}else{
+		txt += 'erro no email<br>';
+		erro++;
+		fafm.auto_focus('email');
+	}
+	fafm.id('cpfcnpjemailresposta', txt);
+	return ( erro == 0 );
+}
+// --- masks - http://digitalbush.com/projects/masked-input-plugin/
+jQuery(function($){
+	$("#telefone").mask("(99) 9999-9999",{completed:function(){ fafm.auto_focus('cep');}});
+	$('#cep').mask("99999-999", {completed:function(){ fafm.auto_focus('cpf');}});
+	$('#cpf').mask("999.999.999-99", {completed:function(){ fafm.auto_focus('cnpj');}});
+	$('#cnpj').mask("99.999.999/9999-99", {completed:function(){ fafm.auto_focus('mensagem');}});
+});
+
+$(document).ready(function(){
+
+	$("#number1").prettynumber();
+	$("#number2").prettynumber({ delimiter : ',' });
+
+	$('#primeiro').focus(function(){
+		fafm.auto_val(this, '5 digitos'); 
+		}).blur(function(){
+		fafm.auto_val(this, '5 digitos');
+		}).keypress(function(){
+		fafm.tab(this, 5, 'segundo');
+		});
+	$('#segundo').focus(function(){
+		fafm.auto_val(this, '3 digitos');
+		}).blur(function(){
+		fafm.auto_val(this, '3 digitos');
+		}).keypress(function(){
+		fafm.tab(this, 3, 'terceiro');
+		});
+	$('#terceiro').focus(function(){
+		fafm.auto_val(this, '1 digito');
+		}).blur(function(){
+		fafm.auto_val(this, '1 digito');
+		});
+
+
+});
+</script>

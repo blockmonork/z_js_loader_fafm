@@ -1,1 +1,186 @@
-(function(e){if(typeof define==="function"&&define.amd){define(["jquery"],e)}else{e(jQuery)}})(function(e){function n(t){return e.isFunction(t)||typeof t=="object"?t:{top:t,left:t}}var t=e.scrollTo=function(t,n,r){return e(window).scrollTo(t,n,r)};t.defaults={axis:"xy",duration:parseFloat(e.fn.jquery)>=1.3?0:1,limit:true};t.window=function(t){return e(window)._scrollable()};e.fn._scrollable=function(){return this.map(function(){var t=this,n=!t.nodeName||e.inArray(t.nodeName.toLowerCase(),["iframe","#document","html","body"])!=-1;if(!n)return t;var r=(t.contentWindow||t).document||t.ownerDocument||t;return/webkit/i.test(navigator.userAgent)||r.compatMode=="BackCompat"?r.body:r.documentElement})};e.fn.scrollTo=function(r,i,s){if(typeof i=="object"){s=i;i=0}if(typeof s=="function")s={onAfter:s};if(r=="max")r=9e9;s=e.extend({},t.defaults,s);i=i||s.duration;s.queue=s.queue&&s.axis.length>1;if(s.queue)i/=2;s.offset=n(s.offset);s.over=n(s.over);return this._scrollable().each(function(){function p(e){u.animate(l,i,s.easing,e&&function(){e.call(this,a,s)})}if(r==null)return;var o=this,u=e(o),a=r,f,l={},c=u.is("html,body");switch(typeof a){case"number":case"string":if(/^([+-]=?)?\d+(\.\d+)?(px|%)?$/.test(a)){a=n(a);break}a=c?e(a):e(a,this);if(!a.length)return;case"object":if(a.is||a.style)f=(a=e(a)).offset()}var h=e.isFunction(s.offset)&&s.offset(o,a)||s.offset;e.each(s.axis.split(""),function(e,n){var r=n=="x"?"Left":"Top",i=r.toLowerCase(),d="scroll"+r,v=o[d],m=t.max(o,n);if(f){l[d]=f[i]+(c?0:v-u.offset()[i]);if(s.margin){l[d]-=parseInt(a.css("margin"+r))||0;l[d]-=parseInt(a.css("border"+r+"Width"))||0}l[d]+=h[i]||0;if(s.over[i])l[d]+=a[n=="x"?"width":"height"]()*s.over[i]}else{var g=a[i];l[d]=g.slice&&g.slice(-1)=="%"?parseFloat(g)/100*m:g}if(s.limit&&/^\d+$/.test(l[d]))l[d]=l[d]<=0?0:Math.min(l[d],m);if(!e&&s.queue){if(v!=l[d])p(s.onAfterFirst);delete l[d]}});p(s.onAfter);}).end()};t.max=function(t,n){var r=n=="x"?"Width":"Height",i="scroll"+r;if(!e(t).is("html,body"))return t[i]-e(t)[r.toLowerCase()]();var s="client"+r,o=t.ownerDocument.documentElement,u=t.ownerDocument.body;return Math.max(o[i],u[i])-Math.min(o[s],u[s])};return t})
+/*!
+ * jQuery.ScrollTo
+ * Copyright (c) 2007-2014 Ariel Flesler - aflesler<a>gmail<d>com | http://flesler.blogspot.com
+ * Licensed under MIT
+ * http://flesler.blogspot.com/2007/10/jqueryscrollto.html
+ * @projectDescription Easy element scrolling using jQuery.
+ * @author Ariel Flesler
+ * @version 1.4.12
+ */
+
+;(function(plugin) {
+    // AMD Support
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], plugin);
+    } else {
+        plugin(jQuery);
+    }
+}(function($) {
+
+	var $scrollTo = $.scrollTo = function( target, duration, settings ) {
+		return $(window).scrollTo( target, duration, settings );
+	};
+
+	$scrollTo.defaults = {
+		axis:'xy',
+		duration: parseFloat($.fn.jquery) >= 1.3 ? 0 : 1,
+		limit:true
+	};
+
+	// Returns the element that needs to be animated to scroll the window.
+	// Kept for backwards compatibility (specially for localScroll & serialScroll)
+	$scrollTo.window = function( scope ) {
+		return $(window)._scrollable();
+	};
+
+	// Hack, hack, hack :)
+	// Returns the real elements to scroll (supports window/iframes, documents and regular nodes)
+	$.fn._scrollable = function() {
+		return this.map(function() {
+			var elem = this,
+				isWin = !elem.nodeName || $.inArray( elem.nodeName.toLowerCase(), ['iframe','#document','html','body'] ) != -1;
+
+				if (!isWin)
+					return elem;
+
+			var doc = (elem.contentWindow || elem).document || elem.ownerDocument || elem;
+
+			return /webkit/i.test(navigator.userAgent) || doc.compatMode == 'BackCompat' ?
+				doc.body :
+				doc.documentElement;
+		});
+	};
+
+	$.fn.scrollTo = function( target, duration, settings ) {
+		if (typeof duration == 'object') {
+			settings = duration;
+			duration = 0;
+		}
+		if (typeof settings == 'function')
+			settings = { onAfter:settings };
+
+		if (target == 'max')
+			target = 9e9;
+
+		settings = $.extend( {}, $scrollTo.defaults, settings );
+		// Speed is still recognized for backwards compatibility
+		duration = duration || settings.duration;
+		// Make sure the settings are given right
+		settings.queue = settings.queue && settings.axis.length > 1;
+
+		if (settings.queue)
+			// Let's keep the overall duration
+			duration /= 2;
+		settings.offset = both( settings.offset );
+		settings.over = both( settings.over );
+
+		return this._scrollable().each(function() {
+			// Null target yields nothing, just like jQuery does
+			if (target == null) return;
+
+			var elem = this,
+				$elem = $(elem),
+				targ = target, toff, attr = {},
+				win = $elem.is('html,body');
+
+			switch (typeof targ) {
+				// A number will pass the regex
+				case 'number':
+				case 'string':
+					if (/^([+-]=?)?\d+(\.\d+)?(px|%)?$/.test(targ)) {
+						targ = both( targ );
+						// We are done
+						break;
+					}
+					// Relative/Absolute selector, no break!
+					targ = win ? $(targ) : $(targ, this);
+					if (!targ.length) return;
+				case 'object':
+					// DOMElement / jQuery
+					if (targ.is || targ.style)
+						// Get the real position of the target
+						toff = (targ = $(targ)).offset();
+			}
+			
+			var offset = $.isFunction(settings.offset) && settings.offset(elem, targ) || settings.offset;
+			
+			$.each( settings.axis.split(''), function( i, axis ) {
+				var Pos	= axis == 'x' ? 'Left' : 'Top',
+					pos = Pos.toLowerCase(),
+					key = 'scroll' + Pos,
+					old = elem[key],
+					max = $scrollTo.max(elem, axis);
+
+				if (toff) {// jQuery / DOMElement
+					attr[key] = toff[pos] + ( win ? 0 : old - $elem.offset()[pos] );
+
+					// If it's a dom element, reduce the margin
+					if (settings.margin) {
+						attr[key] -= parseInt(targ.css('margin'+Pos)) || 0;
+						attr[key] -= parseInt(targ.css('border'+Pos+'Width')) || 0;
+					}
+
+					attr[key] += offset[pos] || 0;
+
+					if(settings.over[pos])
+						// Scroll to a fraction of its width/height
+						attr[key] += targ[axis=='x'?'width':'height']() * settings.over[pos];
+				} else {
+					var val = targ[pos];
+					// Handle percentage values
+					attr[key] = val.slice && val.slice(-1) == '%' ?
+						parseFloat(val) / 100 * max
+						: val;
+				}
+
+				// Number or 'number'
+				if (settings.limit && /^\d+$/.test(attr[key]))
+					// Check the limits
+					attr[key] = attr[key] <= 0 ? 0 : Math.min( attr[key], max );
+
+				// Queueing axes
+				if (!i && settings.queue) {
+					// Don't waste time animating, if there's no need.
+					if (old != attr[key])
+						// Intermediate animation
+						animate( settings.onAfterFirst );
+					// Don't animate this axis again in the next iteration.
+					delete attr[key];
+				}
+			});
+
+			animate( settings.onAfter );
+
+			function animate( callback ) {
+				$elem.animate( attr, duration, settings.easing, callback && function() {
+					callback.call(this, targ, settings);
+				});
+			};
+
+		}).end();
+	};
+
+	// Max scrolling position, works on quirks mode
+	// It only fails (not too badly) on IE, quirks mode.
+	$scrollTo.max = function( elem, axis ) {
+		var Dim = axis == 'x' ? 'Width' : 'Height',
+			scroll = 'scroll'+Dim;
+
+		if (!$(elem).is('html,body'))
+			return elem[scroll] - $(elem)[Dim.toLowerCase()]();
+
+		var size = 'client' + Dim,
+			html = elem.ownerDocument.documentElement,
+			body = elem.ownerDocument.body;
+
+		return Math.max( html[scroll], body[scroll] )
+			 - Math.min( html[size]  , body[size]   );
+	};
+
+	function both( val ) {
+		return $.isFunction(val) || typeof val == 'object' ? val : { top:val, left:val };
+	};
+
+    // AMD requirement
+    return $scrollTo;
+}));

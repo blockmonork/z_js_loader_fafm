@@ -1,0 +1,34 @@
+<h2>fafm.suit</h2>
+<pre>
+fafm.suit();
+params:
+elementoAlvo|elementoAlvoID|elementoAlvoClasse, 
+[Int|String speed] (padrão 'slow')
+----
+&lt;style&gt;
+blockquote, #suitExemploID, .suitExemploClasse {
+	display:none;
+}
+&lt;/style&gt;
+&lt;p&gt;
+	&lt;a id="exemplo1" href="javascript:fafm.suit('#suitExemploID');"&gt;exemplo1&lt;/a&gt; &nbsp;
+	&lt;a id="exemplo2" href="javascript:fafm.suit('.suitExemploClasse', 'normal');"&gt;exemplo2&lt;/a&gt; &nbsp;
+	&lt;a id="exemplo3" href="javascript:fafm.suit('blockquote', 'fast');"&gt;exemplo3&lt;/a&gt; &nbsp;
+&lt;/p&gt;
+&lt;div id="suitExemploID"&gt;conteudo exemplo 1&lt;/div&gt;
+&lt;div class="suitExemploClasse"&gt;conteudo exemplo 2&lt;/div&gt;
+&lt;blockquote&gt;conteudo exemplo 3&lt;/blockquote&gt;
+</pre>
+<style>
+blockquote, #suitExemploID, .suitExemploClasse {
+	display:none;
+}
+</style>
+<p>
+	<a id="exemplo1" href="javascript:fafm.suit('#suitExemploID');">exemplo1</a> &nbsp;
+	<a id="exemplo2" href="javascript:fafm.suit('.suitExemploClasse', 'normal');">exemplo2</a> &nbsp;
+	<a id="exemplo3" href="javascript:fafm.suit('blockquote', 'fast');">exemplo3</a> &nbsp;
+</p>
+<div id="suitExemploID">conteudo exemplo 1</div>
+<div class="suitExemploClasse">conteudo exemplo 2</div>
+<blockquote>conteudo exemplo 3</blockquote>

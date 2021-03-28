@@ -1,0 +1,127 @@
+<style type="text/css">
+body {
+	background:#efefef;
+}
+.barra_body {
+	min-height:666px;
+}
+.barra_container {
+	   display:block;
+	   float:left;
+       width:55px;
+       height:500px;
+	   padding-right:5px;
+}
+.barra_outer {
+       width:55px;
+       height:500px;
+       border:1px solid black;
+       padding:1px;
+	   position:relative;
+	   left:5px;
+}
+.barra_inner {
+       width:55px;
+       height:0px;
+	   color:white;
+	   text-shadow: 1px 1px 1px black;
+	   text-align:center;
+	   position:relative;
+	   left:0;
+}
+</style>
+
+<h1>FAFM chart bar vertical</h1>
+<pre>
+$(document).ready(function(){
+		var barras = {
+			item1 : [
+				'barra12', 
+				12, 
+				'green'
+			],
+			item2 : [
+				'barra25', 
+				25, 
+				'blue'
+			],
+			item3 : [
+				'barra50', 
+				50, 
+				'yellow'
+			],
+			item4 : [
+				'barra75', 
+				75, 
+				'orange'
+			],
+			item5 : [
+				'barra100', 
+				100, 
+				'red'
+			],
+		};
+		bar.init(barras, 'vertical', true);
+});
+</pre>
+<div class="barra_body">
+
+<div class="barra_container">
+	<div class="barra_outer"><div class="barra_inner" id="barra12"></div></div>
+	<p><br></p>
+</div>
+
+<div class="barra_container">
+	<div class="barra_outer"><div class="barra_inner" id="barra25"></div></div>
+	<p><br></p>
+</div>
+
+<div class="barra_container">
+	<div class="barra_outer"><div class="barra_inner" id="barra50"></div></div>
+	<p><br></p>
+</div>
+
+<div class="barra_container">
+	<div class="barra_outer"><div class="barra_inner" id="barra75"></div></div>
+	<p><br></p>
+</div>
+
+<div class="barra_container">
+	<div class="barra_outer"><div class="barra_inner" id="barra100"></div></div>
+	<p><br></p>
+</div>
+
+</div>
+
+<script>
+$(document).ready(function(){
+		var barras = {
+			item1 : [
+				'barra12', 
+				12, 
+				'green'
+			],
+			item2 : [
+				'barra25', 
+				25, 
+				'blue'
+			],
+			item3 : [
+				'barra50', 
+				50, 
+				'yellow'
+			],
+			item4 : [
+				'barra75', 
+				75, 
+				'orange'
+			],
+			item5 : [
+				'barra100', 
+				100, 
+				'red'
+			],
+		};
+		bar.init(barras, 'vertical', true);
+});
+</script>

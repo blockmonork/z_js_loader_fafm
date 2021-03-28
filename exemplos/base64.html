@@ -1,0 +1,48 @@
+<style type="text/css">
+#teste_codifica_decodifica {
+	text-align:center;
+	background:white;
+	color:black;
+	font-weight:bolder;
+}
+</style>
+<h2>fafm.encode/decode base64</h2>
+<div id="teste_codifica_decodifica">Texto a ser codificado/decodificado com base64 usando fafm.encode</div><br>
+<pre>
+function codificar()
+{
+	var divId = 'teste_codifica_decodifica';
+	var texto = $('#'+divId).html();
+	var x = fafm.encode(texto);
+	fafm.id(divId, x);
+}
+</pre>
+<a href="javascript:codificar();">codificar</a>
+<pre>
+function decodificar()
+{
+	var divId = 'teste_codifica_decodifica';
+	var texto = $('#'+divId).html();
+	var x = fafm.decode(texto);
+	fafm.id(divId, x);
+}
+</pre>
+<a href="javascript:decodificar();">decodificar</a>
+
+<script>
+function codificar()
+{
+	var divId = 'teste_codifica_decodifica';
+	var texto = $('#'+divId).html();
+	var x = fafm.encode(texto);
+	fafm.id(divId, x);
+}
+function decodificar()
+{
+	var divId = 'teste_codifica_decodifica';
+	var texto = $('#'+divId).html();
+	var x = fafm.decode(texto);
+	fafm.id(divId, x);
+}
+</script>
+

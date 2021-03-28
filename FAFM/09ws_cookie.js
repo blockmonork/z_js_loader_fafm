@@ -1,1 +1,72 @@
-var ws={isSession:false,set:function(e,t){if(!this.isSession){localStorage.setItem(e,t)}else{sessionStorage.setItem(e,t)}},get:function(e){if(!this.isSession){return localStorage.getItem(e)||false}else{return sessionStorage.getItem(e)||false}},size:function(){if(!this.isSession){return localStorage.length}else{return sessionStorage.length}},clear:function(){if(!this.isSession){for(a in localStorage){ws.set(a,"");localStorage.removeItem(a)}localStorage.clear()}else{for(a in sessionStorage){ws.set(a,"");sessionStorage.removeItem(a)}sessionStorage.clear()}}};var cuk={path_padrao:"path=/",set:function(){var e=this.set.arguments;var t=e[0]||false;if(!t)return;var n=e[1]||"";var r=e[2]||365;var i=e[3]||this.path_padrao;this._criaCookie(t,n,r,i)},get:function(e){var t=e+"=";var n=document.cookie.split(";");for(var r=0;r<n.length;r++){var i=n[r].trim();if(i.indexOf(t)==0)return i.substring(t.length,i.length)}return false},clear:function(e){document.cookie=e+"=; expires=Thu, 31 Jan 1970 00:00:00 GMT"},_criaCookie:function(e,t,n,r){var i=new Date;i.setTime(i.getTime()+n*24*60*60*1e3);var s="expires="+i.toGMTString();document.cookie=e+"="+t+"; "+s+"; "+r}}
+// http://www.w3schools.com/html/html5_webstorage.asp
+var ws = {
+	isSession : false,
+	set : function(k, v) { 
+		if ( !this.isSession ){
+			localStorage.setItem(k,v);
+		}else{
+			sessionStorage.setItem(k,v);
+		}
+	},
+	get : function(k) { 
+		if ( !this.isSession ){
+			return (localStorage.getItem(k)|| false);
+		}else{
+			return (sessionStorage.getItem(k)|| false);
+		}
+	},
+	size : function() { 
+		if ( !this.isSession ){
+			return localStorage.length;
+		}else{
+			return sessionStorage.length;
+		}
+	},
+	clear : function() {
+		if ( !this.isSession ){
+			for ( a in localStorage ) { 
+				ws.set(a, ''); 
+				localStorage.removeItem(a);
+			}
+			localStorage.clear();
+		}else{
+			for ( a in sessionStorage ) { 
+				ws.set(a, ''); 
+				sessionStorage.removeItem(a);
+			}
+			sessionStorage.clear();
+		}
+	}
+};
+//http://www.w3schools.com/js/js_cookies.asp
+var cuk = {
+	path_padrao : 'path=/',
+	set : function(){
+		var A = this.set.arguments;
+		var nome = ( A[0] || false );
+		if ( !nome ) return;
+		var valor = ( A[1] || '' );
+		var expira = ( A[2] || 365 );
+		var cam = ( A[3] || this.path_padrao );
+		this._criaCookie(nome, valor, expira, cam);
+	},
+	get : function(nome){
+		var name = nome + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0; i<ca.length; i++) {
+			var c = ca[i].trim();
+			if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+		}
+		return false;
+	},
+	clear : function(nome){
+		document.cookie = nome+"=; expires=Thu, 31 Jan 1970 00:00:00 GMT"; 
+	},
+	_criaCookie : function(nome, valor, expira, caminho){
+		var d = new Date();
+		d.setTime(d.getTime()+(expira*24*60*60*1000));
+		var expires = "expires="+d.toGMTString();
+		document.cookie = nome + "=" + valor + "; " + expires + '; ' + caminho;
+	},
+}
+

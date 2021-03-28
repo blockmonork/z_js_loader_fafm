@@ -1,0 +1,34 @@
+<h2>fafm.showBoxes</h2>
+<pre>
+&lt;span class="show_boxes bt" data-target="conteudo1"&gt;ver conteudo 1&lt;/span&gt;
+&lt;span class="show_boxes bt" data-target="conteudo2"&gt;ver conteudo 2&lt;/span&gt;
+&lt;div class="show_boxes_container"&gt;
+	&lt;div class="box bg_red show_boxes_content" id="conteudo1"&gt;conteúdo 1&lt;/div&gt;
+	&lt;div class="box bg_red show_boxes_content" id="conteudo2"&gt;conteúdo 2&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+$(document).ready(function(){
+	fafm.showBoxes(true, 'normal');
+});
+params:
+bool fade [padrão false]
+[int/string] speed [padrão 'slow']
+&lt;/script&gt;
+</pre>
+<span class="show_boxes bt bg_white" data-target="conteudo1">ver conteudo 1</span>
+<span class="show_boxes bt bg_white" data-target="conteudo2">ver conteudo 2</span>
+<br><br>
+<div class="show_boxes_container">
+	<div class="box bg_white show_boxes_content" id="conteudo1">conteúdo 1</div>
+	<div class="box bg_white show_boxes_content" id="conteudo2">conteúdo 2</div>
+</div>
+
+<script>
+/*
+JA INICIEI NO INDEX.PHP POI MENU PRINCIPAL JÁ USA
+$(document).ready(function(){
+	fafm.showBoxes();
+});
+*/
+</script>

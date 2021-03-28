@@ -1,0 +1,85 @@
+<style type="text/css">
+.crossfade_container {
+	width: 940px;
+	min-height:300px;
+	margin: 32px auto;
+	display:block;
+}
+#exemplo1, #exemplo2 {
+	width:269px;
+	height:229px;
+	border:1px solid black;
+	margin: 0 auto;
+}
+</style>
+
+<h2>Crossfade Img</h2>
+<pre>
+$('#elementoID').crossfadeImg(
+	defaultOptions {
+		delay:2000,
+		fadeSpeed:500
+	}
+);
+</pre>
+<div class="crossfade_container">
+	<p>Exemplo 1</p>
+<pre>
+&lt;div id="exemplo1" class="crossfadeImg"&gt;
+	&lt;img src="exemplos/sample-image-1.png" alt="" /&gt;
+	&lt;img src="exemplos/sample-image-2.png" alt="" /&gt;
+	&lt;img src="exemplos/sample-image-3.png" alt="" /&gt;
+	&lt;img src="exemplos/sample-image-4.png" alt="" /&gt;
+&lt;/div&gt;
+&lt;script&gt;
+$(document).ready(function(){
+	$('#exemplo1').crossfadeImg();
+});
+&lt;/script&gt;
+</pre>
+	<div id="exemplo1" class="crossfadeImg">
+		<img src="exemplos/sample-image-1.png" alt="" />
+		<img src="exemplos/sample-image-2.png" alt="" />
+		<img src="exemplos/sample-image-3.png" alt="" />
+		<img src="exemplos/sample-image-4.png" alt="" />
+
+	</div>
+</div>
+
+<div class="crossfade_container">
+	<p>Exemplo 2</p>
+<pre>
+&lt;div id="exemplo2" class="crossfadeImg"&gt;
+	&lt;img src="exemplos/sample-image-1.png" alt="" /&gt;
+	&lt;img src="exemplos/sample-image-2.png" alt="" /&gt;
+	&lt;img src="exemplos/sample-image-3.png" alt="" /&gt;
+	&lt;img src="exemplos/sample-image-4.png" alt="" /&gt;
+&lt;/div&gt;
+&lt;script&gt;
+$(document).ready(function(){
+	$('#exemplo2').crossfadeImg({
+		delay:5000, 
+		fadeSpeed:3000
+	});
+});
+&lt;/script&gt;
+</pre>
+	<div id="exemplo2" class="crossfadeImg">
+		<img src="exemplos/sample-image-1.png" alt="" />
+		<img src="exemplos/sample-image-2.png" alt="" />
+		<img src="exemplos/sample-image-3.png" alt="" />
+		<img src="exemplos/sample-image-4.png" alt="" />
+
+	</div>	
+</div>
+
+
+<script>
+$(document).ready(function(){
+	$('#exemplo1').crossfadeImg();
+	$('#exemplo2').crossfadeImg({
+		delay:5000,
+		fadeSpeed:3000
+	});
+});
+</script>

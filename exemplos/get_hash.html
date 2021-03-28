@@ -1,0 +1,75 @@
+<h2>Get hash</h2>
+<pre>
+function pega_hash_prop(x){
+	fafm.id('debug', fafm.get_hash_props());
+}
+fafm.get_hash() - retorna o hash da url (ex: _FAFM_js_lib/?e=get_hash#ancora =>retorna ancora) 
+	ou o hash do elemento se param this for informado.
+	ex: a href="link#Hash" onclick="fafm.get_hash(this);" -> retorna Hash.
+fafm.get_hash_props() - se nenhum param. informado, retorna todas as propriedades de location, senão, retorna location.itemDesejado
+</pre>
+<a href="#ancora" onclick="pega_hash(this);">pegar hash (#ancora) get_hash(this);</a> &nbsp;
+<a href="#fafm" onclick="pega_hash();">pegar hash (#fafm)</a> 
+<br>
+Resposta: <span id="resposta"></span><br>
+
+<h2>Usando Hash para enviar via ajax</h2>
+<pre>
+&lt;a href="#paginaAlvo1" class="ajaxHash"&gt;pagina alvo 1&lt;/a&gt; &nbsp;
+&lt;a href="#paginaAlvo2" class="ajaxHash"&gt;pagina alvo 2&lt;/a&gt;
+&lt;p&gt;&nbsp;&lt;/p&gt;
+&lt;div id="ajax_hash"&gt;&lt;/div&gt;
+&lt;div id="ajax_hash_loader" class="ajax_loader_img_container img_facebook"&gt;&lt;/div&gt;
+JS:
+function send_hash_to_ajax(_href)
+{
+	v = fafm.get_hash_from_url(_href);
+	fafm.ajax('ajax_hash', 'index.php?ajaxByHash='+v, 'ajax_hash_loader');
+}
+$(document).ready(function(){
+	$('.ajaxHash').click(function(e){
+		e.preventDefault();
+		send_hash_to_ajax( $(this).attr('href') );
+	});
+});
+</pre>
+<a href="#paginaAlvo1" class="ajaxHash">pagina alvo 1</a> &nbsp;
+<a href="#paginaAlvo2" class="ajaxHash">pagina alvo 2</a>
+<p>&nbsp;</p>
+<div id="ajax_hash"></div>
+<div id="ajax_hash_loader" class="ajax_loader_img_container img_facebook"></div>
+
+<hr>
+<p>Propriedades do objeto location: <a href="javascript:pega_hash_prop();">ver</a><p>
+<p id="debug_hash" style="font-size:0.8em;"></p>
+
+
+
+<script>
+function send_hash_to_ajax(_href)
+{
+	v = fafm.get_hash_from_url(_href);
+	fafm.ajax('ajax_hash', 'index.php?ajaxByHash='+v, 'ajax_hash_loader');
+}
+$(document).ready(function(){
+	$('.ajaxHash').click(function(e){
+		e.preventDefault();
+		send_hash_to_ajax( $(this).attr('href') );
+	});
+});
+function pega_hash()
+{
+	x = pega_hash.arguments;
+	if ( x[0] ){
+		fafm.id('resposta', fafm.get_hash(x[0]));
+	}else{
+		fafm.id('resposta', fafm.get_hash());
+	}
+}
+function pega_hash_prop(){
+	fafm.id('debug_hash', fafm.get_hash_props());
+}
+</script>
+
+</body>
+</html>

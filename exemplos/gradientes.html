@@ -1,0 +1,213 @@
+<h2>Plugin Gradient</h2>
+<pre>
+$('#elementoID').gradient(defaultOptions{
+	mode 					: 'linear', // ou radial
+	degrees					: false, // se true, informar o valor em direction. ex:direction: '45deg'
+	repeating 				: false,
+	direction 				: 'top', 
+	colors 					: 'white, black',
+	radialCenter			: '', // padrao: centro ou 50%, 50% ou px-width, px-height 
+	radialSize				: 4, // quanto menor o valor, mais longe da borda estará (valores de 1 a 4)
+	keepAtualElementStyle 	: true, // setar para false se não desejar que o plugin 
+									mantenha o style do elemento setado (ex div style=qqerCore)
+	});
+a referência pode ser:
+$(elemento) > $('p').gradient();
+$(classe) > $('.classeQualquer').gradient();
+$(elementoID) > $('#elementoIdX').gradient();
+</pre>
+<style>
+#gradient_debug {
+	background:red;
+	color:white;
+	border:1px solid #000;
+	min-height:50px;
+}
+.gradientExemplos > div {
+	padding:5px;
+	color:white;
+	text-shadow:1px 1px 1px #000;
+	margin: 5px 0 5px 0;
+	min-height:150px !important;	
+	border:1px solid olive;
+}
+.gradientExemplos > * { text-align:center; }
+.exemplo4 {
+	font-style:italic;
+}
+.radial {
+	margin:0 auto !important;
+	width:300px !important;
+	height:300px !important;
+	border-radius:150px;
+	radius:150px;
+}
+</style>
+
+<div class="gradientExemplos">
+	
+	<h3>gradients linear</h3>
+	
+	<p>exemplo 1:</p>
+	<div id="exemplo1">linear básico</div>
+	<p>exemplo 2:</p>
+	<div id="exemplo2" style="font-weight:bolder;">linear 3 cores</div>
+	<p>exemplo 3:</p>
+	<div id="exemplo3" class="mouse" >com classe mouse</div>
+	<p>exemplo 4:</p>
+	<div id="exemplo4" class="exemplo4" style="text-transform:uppercase;">direction left-right (azul:left, verde:right)</div>
+	<p>exemplo 5:</p>
+	<div id="exemplo5">direction:top. verde, branco, azul. azul:top, verde:bottom</div>
+	<p>exemplo 6:</p>
+	<div id="exemplo6">direction:left top</div>
+	<p>exemplo 7:</p>
+	<div id="exemplo7">white:30%</div>
+	<p>exemplo 8:</p>
+	<div id="exemplo8">repeating</div>
+	<p>exemplo 9:</p>
+	<div id="exemplo9">direção em graus (degree:true) 45deg</div>
+	<p>exemplo 10:</p>
+	<div id="exemplo10">usando transparência</div>
+
+	<h3>gradients radial</h3>
+	
+	<p>exemplo 11:</p>
+	<div id="exemplo11" class="radial">radial padrão</div>
+	<p>exemplo 12:</p>
+	<div id="exemplo12" class="radial"></div>
+	<p>exemplo 13:</p>
+	<div id="exemplo13" class="radial"></div>
+	<p>exemplo 14:</p>
+	<div id="exemplo14" class="radial"></div>
+	<p>exemplo 15:</p>
+	<div id="exemplo15" class="radial"></div>
+	<p>exemplo 16:</p>
+	<div id="exemplo16" class="radial"></div>
+	<p>exemplo 17:</p>
+	<div id="exemplo17" class="radial"></div>
+	<p>exemplo 18:</p>
+	<div id="exemplo18" class="radial"></div>
+	<p>exemplo 19:</p>
+	<div id="exemplo19" class="radial">hipnotize</div>
+	
+</div>
+
+<div id="gradient_debug"></div>
+
+
+<script>
+$('#exemplo1').gradient();
+$('#exemplo2').gradient({
+	colors:'red, white, blue'
+	});
+$('#exemplo3').gradient({
+	colors:'red, white, blue'
+	});
+$('#exemplo4').gradient({
+	direction:'left', 
+	colors:'red, white, blue'
+	});
+$('#exemplo5').gradient({
+	direction:'bottom', 
+	colors:'red, white, blue'
+	});
+$('#exemplo6').gradient({
+	direction:'left top',
+	colors:'red, white, blue'
+	});
+$('#exemplo7').gradient({
+	direction:'right top',
+	colors:'red, white 20%, blue'
+	});
+$('#exemplo8').gradient({
+	repeating:true,
+	colors:'red, white 20%, blue 30%, green 10%'
+	});
+$('#exemplo9').gradient({
+	degrees:true,
+	colors:'45deg, red, blue'
+	});
+$('#exemplo10').gradient({
+	colors:'rgba(255,0,0,0), rgba(255,0,0,1) 80%, rgba(255,0,0,0)'
+	});	
+$('#exemplo11').gradient({
+	mode:'radial',
+	colors:'white, green, blue, black'
+});	
+$('#exemplo12').gradient({
+	mode:'radial',
+	radialCenter:'100px 100px',
+	radialSize:4,
+	colors:'white, green, blue, black'
+});	
+$('#exemplo13').gradient({
+	mode:'radial',
+	radialCenter:'100px 100px',
+	radialSize:3,
+	colors:'white, green, blue, black'
+});		
+$('#exemplo14').gradient({
+	mode:'radial',
+	radialCenter:'100px 100px',
+	radialSize:2,
+	colors:'white, green, blue, black'
+});	
+$('#exemplo15').gradient({
+	mode:'radial',
+	radialCenter:'100px 100px',
+	radialSize:1,
+	colors:'white, green, blue, black'
+});		
+$('#exemplo16').gradient({
+	mode:'radial',
+	repeating:true,
+	direction:'',
+	radialCenter:'100px 100px',
+	radialSize:1,
+	colors:'white, green, blue, black'
+});		
+$('#exemplo17').gradient({
+	mode:'radial',
+	repeating:true,
+	direction:'',
+	radialCenter:'100px 100px',
+	radialSize:1,
+	colors:'white, green 10%, blue 20%, black 20%'
+});		
+$('#exemplo18').gradient({
+	mode:'radial',
+	radialCenter:'50% 50%',
+	radialSize:1,
+	colors:'white, green, blue, black'
+});		
+	
+var T = setInterval('hipnotiza()', 1000);
+var Cor = [
+	'white, green 10%, blue 20%, black 20%',
+	'green 10%, white, blue 20%, black 20%',
+	'green 10%, blue 20%, white, black 20%',
+	];
+var atual = 0;
+function hipnotiza(){
+	$('#exemplo19').gradient({
+		mode:'radial',
+		repeating:true,
+		direction:'',
+		radialCenter:'100px 100px',
+		radialSize:1,
+		colors:Cor[atual],
+		keepAtualElementStyle:false
+	});		
+	atual++;
+	if ( atual > Cor.length-1 ) atual = 0;
+	$('#exemplo19').html('');
+}	
+	
+var x = '';
+for ( i = 1; i <= 18; i++ ){
+	y = document.getElementById('exemplo'+i);
+	x += 'exemplo '+i+ ' - ' + y.getAttribute('style') + '<hr>';
+}
+$('#gradient_debug').html( '<p align="center">debugando divs</p>' + x );
+
+</script>

@@ -1,0 +1,52 @@
+<h2>Get set attribute</h2>
+<pre>
+function teste_get_set_attr(id)
+{
+	w = fafm.get_attribute(id, 'clientWidth') || fafm.get_attribute(id, 'width');
+	texto = 'largura('+w+')';
+	fafm.id('get_set_attr_resposta', texto);
+}
+function teste_altera_attr(id)
+{
+	fafm.set_attribute(id, 'style', 'width:250px; height:250px; color:white; background:red;');
+}
+function teste_remove_attr(id, at)
+{
+	fafm.remove_attribute(id, at);
+	fafm.id('get_set_attr_resposta', at + ' removido');
+}
+</pre>
+
+<div class="text_center" style="width:500px; height:200px; color:#000; background:#fff;" id="get_set_prop_div_id">
+	<p>style dessa div: width:500px; height:200px; color:#000; background:#fff;</p>
+	<p>style2 a ser alterado: width:250px; height:250px; color:white; background:red;</p>
+</div>
+
+<p>Retorno: <span id="get_set_attr_resposta"></span></p>
+<p>
+<a href="javascript:;" onclick="teste_get_set_attr('get_set_prop_div_id');">pegar altura da div.</a>
+&nbsp;
+<a href="javascript:;" onclick="teste_altera_attr('get_set_prop_div_id');">trocar style2</a>
+&nbsp;
+<a href="javascript:;" onclick="teste_remove_attr('get_set_prop_div_id', 'style');">remover styles</a>
+&nbsp;
+<a href="javascript:;" onclick="teste_remove_attr('get_set_prop_div_id', 'class');">remover classe text_center</a>
+</p>
+
+<script>
+function teste_get_set_attr(id)
+{
+	w = fafm.get_attribute(id, 'clientWidth') || fafm.get_attribute(id, 'width');
+	texto = 'largura('+w+')';
+	fafm.id('get_set_attr_resposta', texto);
+}
+function teste_altera_attr(id)
+{
+	fafm.set_attribute(id, 'style', 'width:250px; height:250px; color:white; background:red;');
+}
+function teste_remove_attr(id, at)
+{
+	fafm.remove_attribute(id, at);
+	fafm.id('get_set_attr_resposta', at + ' removido');
+}
+</script>

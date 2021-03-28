@@ -1,0 +1,16 @@
+
+Modulo_modal
+	http://localhost/UTILS/JQueryPlugins/PopUpModal/
+	http://localhost/UTILS/Light%20Box%20-%20CSS%20only/source.html#
+
+Modulo_default ?
+	http://localhost/UTILS/JS_dw_scroll/
+
+Modulo_gallery
+	http://localhost/zzz/_FAFM_jquery_crossfade_image/
+	http://localhost/UTILS/View-Image-js-plugin/
+	PLUGIN LEGAL - ACHO QUE VOU ADD TB - http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/
+
+criar um arquivo/array exclusivo pra chamar lib kickstart (vai ser chamada via _fLoadOut)
+
+

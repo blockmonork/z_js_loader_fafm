@@ -1,0 +1,48 @@
+body {
+	background:#efefef;
+	font-family:Tahoma;
+}
+#ExemplosPageBodyContainer {
+	width:80%;
+	margin:0 auto;
+}
+a {
+	background:silver;
+	font-weight:bold;
+	padding:3px;
+	color:white;
+	text-shadow:1px 1px 1px #000;
+	text-decoration:none;
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition:    all .2s ease-in-out;
+	-ms-transition:     all .2s ease-in-out;
+	-o-transition:      all .2s ease-in-out;
+	-transition:        all .2s ease-in-out;
+	border-radius:3px;
+	radius:3px;
+}
+a:hover {
+	text-shadow:none;
+	color:#000;
+}
+li {
+	padding:5px;
+	list-style:circle;
+}
+li a {
+	display:block;
+	background:gray;
+}
+h1, h2 {
+	color:#fff;
+	text-shadow:1px 1px 1px #000;
+}
+pre {
+	background:white;
+    padding:5px;
+    border-radius:10px;
+    radius:10px;
+}
+input:focus, textarea:focus {
+	border:1px solid darkblue;
+}

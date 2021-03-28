@@ -1,0 +1,63 @@
+<style type="text/css">
+div {
+	padding:10px;
+	margin:0 auto;
+}
+li {
+	min-height:55px;
+	padding:5px 0 5px 0;
+}
+.datafuncs {
+	width:150px;
+	font-weight:bold;
+	display:inline;
+}
+</style>
+<h2>Data Funcs</h2>
+<p>Funções para cálculos de data</p>
+<pre>data_funcs.get_days_between('01/01/2000', '10/01/2000')</pre>
+returns: <div class="datafuncs" id="datafuncs1"></div>
+
+<pre>data_funcs.compara_datas('10/01/2000', '09/01/2000') = returns false (dataA > dataB)</pre>
+returns <div class="datafuncs" id="datafuncs2"></div>
+
+<pre>data_funcs.is_data_valida('29/02/2012') = returns true (fev.bisexto)</pre>
+returns: <div class="datafuncs" id="datafuncs3"></div>
+
+<pre>data_funcs.data_split('10/01/2000', 0, 2) = returns 10</pre>
+returns: <div class="datafuncs" id="datafuncs4"></div>
+
+<pre>data_funcs.is_max_value_for('mes', 15) = returns false (max.mes = 12)</pre>
+returns <div class="datafuncs" id="datafuncs5"></div>
+
+<pre>data_funcs.get_last_day_of(2, 2012) = returns 29 (fev.bisexto)</pre>
+returns <div class="datafuncs" id="datafuncs6"></div>
+<script>
+$(document).ready(function(){
+	$('#datafuncs1').html(data_funcs.get_days_between('01/01/2000','10/01/2000'));
+	var a = ( data_funcs.compara_datas('10/01/2000','09/01/2000') )?'true':'false';
+	$('#datafuncs2').html(a);
+	a = ( data_funcs.is_data_valida('29/02/2012') )?'true':'false';
+	$('#datafuncs3').html(a);
+	$('#datafuncs4').html(data_funcs.data_split('10/01/2000',0,2));
+	a = ( data_funcs.is_max_value_for('mes',15) )?'true':'false';
+	$('#datafuncs5').html(a);
+	$('#datafuncs6').html(data_funcs.get_last_day_of(2,2012));
+});
+</script>
+	<div style="width:760px; border-top:1px solid gray;">
+		<ul>
+			<li><strong>data_funcs.get_days_between(dataMenor, dataMaior)</strong> <small>data formato dd/mm/aaaa</small> => retorna intDias entre as datas. ex: get_days_between('01/01/2000', '10/01/2000') = return 9</li>
+			
+			<li><strong>data_funcs.compara_datas(dataIni, dataFim)</strong> <small>data formato dd/mm/aaaa</small> => retorna boolean se dataIni > dataFim</li>
+			
+			<li><strong>data_funcs.is_data_valida(data)</strong> <small>data formato dd/mm/aaaa</small> => retorna boolean se data informada é correta (checa inclusive se dia do mês está correto (mês de 30,31,fev,bisexto,etc)</li>
+			
+			<li><strong>data_funcs.data_split(data, intStart, intEnd)</strong> <small>data formato dd/mm/aaaa</small> => parte a data. return intValor. ex: pegar o dia: data_split(data, 0, 2), pegar o mes: data_split(data, 2, 2), pegar o ano: data_split(data, 4, 4)</li>
+			
+			<li><strong>data_funcs.is_max_value_for(strItem, intValor)</strong> => retorna boolean se valor estiver dentro dos limites conforme o item (item pode ser: hora, minuto, segundo, dia, mes ou ano). ex: hora: true se valor entre 0 e 24, minuto e segundo: true se entre 0 e 59, ano: entre 1970 e 2038</li>
+			
+			<li><strong>data_funcs.get_last_day_of(intMes, intAno)</strong> <small>ano formato aaaa</small> retorna intDia conforme o mes/ano informado. ex: get_last_day_of(2, 2012) retorna 29 (fev.bisexto)</li>
+			
+		</ul>
+	</div>

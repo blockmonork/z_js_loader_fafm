@@ -1,0 +1,80 @@
+<h2>localStorage (ws) e cookie (cuk) functions</h2>
+<h3>ws</h3>
+<pre>
+ws.isSession = false; // se true, os valores armazenados são válidos somente durante a sessão e são removidos quando a tab é fechada.
+ws.set(key,value);
+ws.get(key); // retorna valor ou false
+ws.size(); // retorna total de valores armazenados
+ws.clear(); // reseta todas as chaves/valores
+</pre>
+<input type="text" name="nome" id="nome" size="50">
+<span class="bt mouse" onclick="ws_exemplo(1);">criar/alterar</span> &nbsp;
+<span class="bt mouse" onclick="ws_exemplo(2);">apagar</span>
+<span id="ws_st"></span>
+<hr>
+
+<h3>cookies functions</h3>
+<pre>
+cuk.set(key, value, [intDaysExpires padrao=365], [path padrao=currentPage (/)] );
+cuk.get(key); // retorna valor ou false
+cuk.clear(key); // apaga o cookie.
+</pre>
+<input type="text" name="nome2" id="nome2" size="50">
+<span class="bt mouse" onclick="cuk_exemplo(1);">criar/alterar</span> &nbsp;
+<span class="bt mouse" onclick="cuk_exemplo(2);">apagar</span>
+<span id="cuk_st"></span>
+<hr>
+<p class="text_center"><a href="?e=ws_cookie">resetar pagina para ver resultados</a></p>
+
+<p>A diferença básica entre localStorage (HTML5) e cookies é que valores armazenados em localStorage são apagados qdo sai do navegador, já o cookie persiste pelo tempo informado em expires (ou conforme as configurações do navegador do usuário).</p>
+
+<script>
+function ws_exemplo(n)
+{
+	st = '';
+	if ( n == 1 ){
+		nome = $('#nome').val();
+		ws.set('nome', nome);
+		st = 'nome salvo';
+	}else{
+		if ( ws.get('nome') ){
+			ws.clear();
+			st = 'nome apagado';
+		}else{
+			st = 'essa ação já foi executada (ws.clear())';
+		}
+	}
+	$('#ws_st').html(st);
+}
+function cuk_exemplo(n)
+{
+	st = '';
+	if ( n == 1 ){
+		nome = $('#nome2').val();
+		cuk.set('nome', nome);
+		st = 'sobrenome salvo';
+	}else{
+		if ( cuk.get('nome') ){
+			cuk.clear('nome');
+			st = 'sobrenome apagado';
+		}else{
+			st = 'essa ação já foi executada (cuk.clear())';
+		}
+	}
+	$('#cuk_st').html(st);
+}
+$(document).ready(function(){
+	if ( ws.get('nome') ){
+		x = 'Seu nome é ' + ws.get('nome');
+	}else{
+		x = 'Digite seu nome';
+	}
+	$('#nome').val(x);
+	if ( cuk.get('nome') ){
+		x = 'Seu sobrenome é ' + cuk.get('nome');
+	}else{
+		x = 'Digite seu sobrenome';
+	}
+	$('#nome2').val(x);	
+});
+</script>

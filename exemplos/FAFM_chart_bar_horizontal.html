@@ -1,0 +1,129 @@
+<style type="text/css">
+body {
+	background:#efefef;
+}
+.barra_body {
+	min-height:666px;
+	margin:0 auto;
+	width:80%;
+}
+.barra_outer {
+       width:800px;
+       height:22px;
+       border:1px solid black;
+       background:white;
+       opacity:0.8;
+       padding:1px;
+	   position:absolute;
+	   left:5px;
+	   clear:both;
+}
+.barra_inner {
+       width:0px;
+       height:22px;
+	   color:white;
+	   text-shadow: 1px 1px 1px black;
+	   position:relative;
+	   left:0;
+}
+.barra_inner span {
+	margin-left:5px;
+}
+</style>
+<h1>FAFM chart bar horizontal</h1>
+<pre>
+$(document).ready(function(){
+		var barras = {
+			item1 : [
+				'barra12', 
+				12, 
+				'green'
+			],
+			item2 : [
+				'barra25', 
+				25, 
+				'blue'
+			],
+			item3 : [
+				'barra50', 
+				50, 
+				'yellow'
+			],
+			item4 : [
+				'barra75', 
+				75, 
+				'orange'
+			],
+			item5 : [
+				'barra100', 
+				100, 
+				'red'
+			],
+		};
+		bar.setAnimaTime(2000);
+		bar.init(barras, 'horizontal', true);
+});
+
+</pre>
+<div class="barra_body">
+
+<div style="display:block;">
+	<div class="barra_outer"><div class="barra_inner" id="barra12"></div></div>
+	<p><br></p>
+</div>
+
+<div style="display:block;">
+	<div class="barra_outer"><div class="barra_inner" id="barra25"></div></div>
+	<p><br></p>
+</div>
+
+<div style="display:block;">
+	<div class="barra_outer"><div class="barra_inner" id="barra50"></div></div>
+	<p><br></p>
+</div>
+
+<div style="display:block;">
+	<div class="barra_outer"><div class="barra_inner" id="barra75"></div></div>
+	<p><br></p>
+</div>
+
+<div style="display:block;">
+	<div class="barra_outer"><div class="barra_inner" id="barra100"></div></div>
+	<p><br></p>
+</div>
+
+</div>
+
+<script>
+$(document).ready(function(){
+		var barras = {
+			item1 : [
+				'barra12', 
+				12, 
+				'green'
+			],
+			item2 : [
+				'barra25', 
+				25, 
+				'blue'
+			],
+			item3 : [
+				'barra50', 
+				50, 
+				'yellow'
+			],
+			item4 : [
+				'barra75', 
+				75, 
+				'orange'
+			],
+			item5 : [
+				'barra100', 
+				100, 
+				'red'
+			],
+		};
+		bar.setAnimaTime(2000);
+		bar.init(barras, 'horizontal', true);
+});
+</script>

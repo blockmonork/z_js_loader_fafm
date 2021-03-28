@@ -1,0 +1,62 @@
+<h2>jquery.loremPangramator</h2>
+<pre>
+$(elemento).loremPangramator(defaultOptions{
+	lang: 'Portuguese',
+	rows:5,
+	align:'justify',
+	showRowNumber:true,
+});
+</pre>
+<p class="text_center bold">jquery.loremPangramator(Portuguese)</p>
+<pre>
+&lt;div id="loremPt"&gt;&lt;/div&gt;
+&lt;script&gt;
+$(document).ready(function(){
+	$('#pangramatorPT').loremPangramator();
+});
+&lt;/script&gt;
+</pre>
+<div id="pangramatorPT"></div>
+<p class="text_center bold">jquery.loremPangramator(English)</p>
+<pre>
+&lt;div id="loremEn"&gt;&lt;/div&gt;
+&lt;script&gt;
+$(document).ready(function(){
+	$('#pangramatorEN').loremPangramator({
+		lang:'English',
+		rows:3,
+		align:'right'
+	});
+});
+&lt;/script&gt;
+</pre>
+<div id="pangramatorEN"></div>
+<p class="text_center bold">jquery.loremPangramator(Deutsche)</p>
+<pre>
+&lt;div id="loremDe"&gt;&lt;/div&gt;
+&lt;script&gt;
+$(document).ready(function(){
+	$('#pangramatorDE').loremPangramator({
+		lang:'Deutsche',
+		rows:2,
+		showRowNumber:false,
+	});
+});
+&lt;/script&gt;
+</pre>
+<div id="pangramatorDE"></div>
+<script>
+$(document).ready(function(){
+	$('#pangramatorPT').loremPangramator();
+	$('#pangramatorEN').loremPangramator({
+		lang:'English',
+		rows:3,
+		align:'right'
+	});
+	$('#pangramatorDE').loremPangramator({
+		lang:'Deutsche',
+		rows:2,
+		showRowNumber:false
+	});
+});
+</script>

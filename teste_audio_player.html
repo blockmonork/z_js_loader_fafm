@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset iso="8859-1" />
+<body>
+
+<div class="box bg_silver b_gray pad5 rounded5" style="width:555px; margin:5px auto;">
+	<h2 class="text_center">Audio player</h2>
+	<p class="text_center">obs:a implementar na lib fafm<br>
+	compatibilidade:<br>
+	FF 31 - mp3(ok), ogg(ok)<br>
+	Chrome - mp3(ok), ogg(ok)<br>
+	IE - mp3(ok), ogg(NAO)<br>
+	Safari - mp3(ok), ogg(NAO)<br>
+	To-Do: add params: <a href="http://www.w3schools.com/tags/tag_audio.asp" target="_blank">aqui</a> e
+	<a href="http://www.w3schools.com/tags/ref_av_dom.asp" target="_blank">aqui</a>
+	<a href="http://www.script-tutorials.com/demos/363/" target="_blank">tuto demo</a>
+	</p>
+	<div id="A"></div>
+</div>
+
+<script src="loader.js"></script>
+<script>
+fafmModulos.debug_mode=false;
+_fLoad('default');
+</script>
+<script>
+(function($){
+	$.fn.html5Audio = function(settings){
+		var config = {
+			audioWidth:100,
+			audioHeight:50,
+			audioControls:true,
+			oggSrc:'',
+			mp3Src:'',
+		};
+		var El = '';
+		if ( settings ) { $.extend(config, settings); }
+		var C = ( config.audioControls ) ? ' controls ' : '';
+		El = '<audio '+C+' >';
+		if ( config.mp3Src != '' ){
+			El += '<source src="'+config.mp3Src+'" type="audio/mpeg">';
+			El += '<embed height="'+config.audioHeight+'" width="'+config.audioWidth+'" src="'+config.mp3Src+'">';
+		}
+		if ( config.oggSrc != '' ){
+			El += '<source src="'+config.oggSrc+'" type="audio/ogg">';
+		}
+		El += '</audio>';
+		this.html(El);
+	};
+})(jQuery);
+
+
+$(document).ready(function(){
+	$('#A').html5Audio({
+		mp3Src:'http://www.w3schools.com/html/horse.mp3',
+		oggSrc:'http://www.w3schools.com/html/horse.ogg',
+	});
+
+});
+</script>
+
+<!--
+compatibilidade:
+FF 31 - mp3(ok), ogg(ok)
+Chrome - mp3(ok), ogg(ok)
+IE - mp3(ok), ogg(NAO)
+Safari - mp3(ok), ogg(NAO)
+-->
+
+
+
+<!--
+<video width="320" height="240" controls autoplay>
+  <source src="http://www.w3schools.com/html/movie.ogg" type="video/ogg">
+  <source src="http://www.w3schools.com/html/movie.mp4" type="video/mp4">
+  <object data="http://www.w3schools.com/html/movie.mp4" width="320" height="240">
+    <embed width="320" height="240" src="http://www.w3schools.com/html/movie.swf">
+  </object>
+</video>
+
+<audio controls>
+  <source src="http://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+  <source src="http://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+  <embed height="50" width="100" src="http://www.w3schools.com/html/horse.mp3">
+</audio>
+-->

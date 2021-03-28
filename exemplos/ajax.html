@@ -1,0 +1,37 @@
+<h2>Ajax</h2>
+<pre>
+&lt;div id="ajax_load1" class="mouse" 
+	onclick="fafm.ajax('ajax_load1', 'index.php?teste_ajax=exemplo1', 'ajax_loader1');"&gt;
+	&lt;span&gt;&rarr; disparar ajax exemplo 1&lt;/span&gt;
+&lt;/div&gt;
+&lt;div id="ajax_loader1" class="ajax_loader_img_container img_bigbar"&gt;&lt;/div&gt;
+</pre>
+<div id="ajax_load1" class="mouse" 
+	onclick="fafm.ajax('ajax_load1', 'index.php?teste_ajax=exemplo1', 'ajax_loader1');">
+<span>&rarr; disparar ajax exemplo 1</span>
+</div>
+<div id="ajax_loader1" class="ajax_loader_img_container img_bigbar"></div>
+
+<pre>
+&lt;div id="ajax_load2" class="mouse" 
+	onclick="fafm.ajax('ajax_load2', 'index.php?teste_ajax=exemplo2', 'ajax_loader2', '$(\'#teste_exemplo2\').html(\'oi\');');"&gt;
+&lt;span&gt;&rarr; disparar ajax exemplo 2&lt;/span&gt;
+&lt;/div&gt;
+&lt;div id="ajax_loader2" class="ajax_loader_img_container img_flower"&gt;&lt;/div&gt;
+&lt;div id="teste_exemplo2" style="padding:10px 0 0 0;"&gt;&lt;/div&gt;
+</pre>
+<div id="ajax_load2" class="mouse" 
+	onclick="fafm.ajax('ajax_load2', 'index.php?teste_ajax=exemplo2', 'ajax_loader2', '$(\'#teste_exemplo2\').html(\'oi\');');">
+<span>&rarr; disparar ajax exemplo 2</span>
+</div>
+<div id="ajax_loader2" class="ajax_loader_img_container img_flower"></div>
+<div id="teste_exemplo2" style="padding:10px 0 0 0;"></div>
+<pre>
+fafm.ajax(1, 2, 3, 4);
+params:
+1. id da div handler (a div que vai chamar o ajax),
+2. o arquivo alvo a ser carregado via ajax,
+3. id da div com o loader [optional],
+4. callback - é executado quando o ajax for concluído [opcional]
+</pre>
+

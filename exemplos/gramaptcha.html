@@ -1,0 +1,35 @@
+<h2>jquery.gramaptcha</h2>
+<p>Simples captcha usando sequência definida pelo usuário</p>
+<pre>
+$(elemento).gramaptcha(defaultOptions{
+	inputId:'gramaptcha',
+	hiddenId:'v',
+	outerBoxClass:'',
+	isDebug:false,
+	theItens: ['Eu', 'Tu', 'Ele', 'Nós', 'Vós', 'Eles'],
+});
+Onde:
+inputId = o elemento (form.input) que vai receber o valor digitado pelo usuário.
+hiddenId = a resposta da sequência
+outerBoxClass = classe css para estilização do box que exibe a sequência
+isDebug = se true apenas exibe um alert com o resultado gerado
+theItens = array com a sequência a ser gerada
+</pre>
+<p>ex. formulário de contato:<br>
+Nome: <input> | Email: <input>
+Complete a sequência abaixo:</p>
+<div id="gramaptchaBox"></div>
+<p>num submit desse formulário, bastaria fazer a checagem: if (gramaptcha.value == v.value){true}else{false}</p>
+<pre>
+&lt;div id="gramaptchaBox"&gt;&lt;/div&gt;
+&lt;script&gt;
+$(document).ready(function(){
+	$('#gramaptchaBox').gramaptcha();
+});
+&lt;/script&gt;
+</pre>
+<script>
+$(document).ready(function(){
+	$('#gramaptchaBox').gramaptcha();
+});
+</script>

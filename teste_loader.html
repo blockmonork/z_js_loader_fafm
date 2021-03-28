@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head></head>
+<body>
+<div id="resposta"></div>
+
+<script>
+var modulos = {
+	M_modulo1 : ['mod1_file1', 'mod1_file2'],
+	M_modulo2 : ['mod2_file1', 'mod2_file2'],
+	M_modulos : [],
+	M_temp : '',
+	load:function(F){
+		if ( typeof F == 'object' ){
+			for ( i = 0; i < F.length; i++ ){
+				this.extrair(F[i]);
+			}
+		}else{
+			alert('todo se string');
+		}
+		this.M_modulos.push(this.M_temp);
+		this.escreve();
+	},
+	extrair:function(texto){
+		x = eval('this.M_'+texto+'.toString();');
+		this.M_temp += x + ',';
+	},
+	escreve:function(){
+		document.getElementById('resposta').innerHTML = 'modulos carregados: ' + this.M_modulos.length + '<br>' + this.M_modulos.toString();
+	},
+}
+
+function load(f)
+{
+	modulos.load(f);
+}
+
+load( ['modulo1', 'modulo2'] );
+//document.getElementById('resposta').innerHTML = modulos.M_modulo1.toString();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset iso="8859-1" />
+<body>
+<div class="box bg_silver b_gray pad5 rounded5" style="width:555px; margin:5px auto;">
+	<h2 class="text_center">video player</h2>
+	<p class="text_center">obs:a implementar na lib fafm<br>
+	compatibilidade:<br>
+	FF - ogg(ok), mp4/swf(ok)<br>
+	Chrome - ogg(ok), mp4/swf(ok)<br>
+	IE - ogg(NAO), mp4/swf(ok)<br>
+	Safari - ogg(NAO), mp4/swf(ok)
+	</p>
+	<div id="A"></div>
+</div>
+
+<script src="loader.js"></script>
+<script>
+fafmModulos.debug_mode=false;
+_fLoad('default');
+</script>
+<script>
+(function($){
+	$.fn.html5Video = function(settings){
+		var config = {
+			videoWidth:320,
+			videoHeight:240,
+			videoControls:true,
+			videoAutoPlay:true,
+			oggSrc:'',
+			mp4Src:'',
+			swfSrc:'',
+		};
+		var El = '';
+		if ( settings ) { $.extend(config, settings); }
+		var C = ( config.videoControls ) ? ' controls ' : '';
+		var A = ( config.videoAutoPlay ) ? ' autoplay ' : '';
+		El = '<video width="'+config.videoWidth+'" height="'+config.videoHeight+'" '+C+A+' >';
+		if ( config.oggSrc != '' ){
+			El += '<source src="'+config.oggSrc+'" type="video/ogg">';
+		}
+		if ( config.mp4Src != '' ){
+			El += '<source src="'+config.mp4Src+'" type="video/mp4">';
+			El += '<object data="'+config.mp4Src+'" width="'+config.videoWidth+'" height="'+config.videoHeight+'">';
+			El += '<embed width="'+config.videoWidth+'" height="'+config.videoHeight+'" src="'+config.swfSrc+'"></object>';
+		}
+		El += '</video>';
+		this.html(El);
+	};
+})(jQuery);
+
+
+$(document).ready(function(){
+	$('#A').html5Video({
+		videoAutoPlay:false,
+		oggSrc:'http://www.w3schools.com/html/movie.ogg',
+		//mp4Src:'http://www.w3schools.com/html/movie.mp4',
+		swfSrc:'http://www.w3schools.com/html/movie.swf',
+	});
+
+});
+</script>
+
+<!--
+compatibilidade:
+FF - ogg(ok), mp4/swf(ok)
+Chrome - ogg(ok), mp4/swf(ok)
+IE - ogg(NAO), mp4/swf(ok)
+Safari - ogg(NAO), mp4/swf(ok)
+-->
+
+<!--
+<video width="320" height="240" controls autoplay>
+  <source src="http://www.w3schools.com/html/movie.ogg" type="video/ogg">
+  <source src="http://www.w3schools.com/html/movie.mp4" type="video/mp4">
+  <object data="http://www.w3schools.com/html/movie.mp4" width="320" height="240">
+    <embed width="320" height="240" src="http://www.w3schools.com/html/movie.swf">
+  </object>
+</video>
+
+<audio controls>
+  <source src="http://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+  <source src="http://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+  <embed height="50" width="100" src="http://www.w3schools.com/html/horse.mp3">
+</audio>
+-->

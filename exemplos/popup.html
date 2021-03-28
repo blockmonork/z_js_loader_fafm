@@ -1,0 +1,50 @@
+<h2>Pop up</h2>
+<pre>
+function teste_popup()
+{
+	arquivo = 'exemplos/exemplo_popup.html';
+	nome = 'TestePopUp';
+	features = 'width=300,height=300,location=no,directories=no,scrollbars=false,menubar=false,resizable=no';
+	posX = parseInt( fafm.screen_size('w')/2 ) - 150; // meio da tela
+	posY = parseInt( fafm.screen_size('h')/2 ) - 150; // meio da tela
+	if ( redim ){
+		redimW = 300;
+		redimH = 120;
+		fafm.popup(arquivo, nome, features, posX, posY, redimW, redimH);
+	}else{
+		fafm.popup(arquivo, nome, features, posX, posY);
+	}
+}
+params:
+1. o arquivo a ser aberto [obrigatório],
+[opcionais]:
+2. nome do popup 
+3. features para o popup (largura, altura, se exibe scrollbar...
+4. posX - onde o popup vai ser positionado na tela
+5. posY - onde o popup vai ser positionado na tela
+6. redimW - redimensiona o popup pra x width depois de aberto
+7. redimH - redimensiona o popup pra x height depois de aberto
+</pre>
+<p><a href="javascript:teste_popup(true);">Abrir popup 1</a>
+<i>Neste exemplo, o popup vai abrir no tamanho de 300x300 e depois será redimensionado para 300 x 120</i></p>
+
+<p><a href="javascript:teste_popup(false);">Abrir popup 2</a>
+<i>Neste exemplo, o popup vai abrir no tamanho de 300x300 e ficar no meio da tela</i></p>
+
+<script>
+function teste_popup(redim)
+{
+	arquivo = 'exemplos/exemplo_popup.html';
+	nome = 'TestePopUp';
+	features = 'width=300,height=300,location=no,directories=no,scrollbars=false,menubar=false,resizable=no';
+	posX = parseInt( fafm.screen_size('w')/2 ) - 150; // meio da tela
+	posY = parseInt( fafm.screen_size('h')/2 ) - 150; // meio da tela
+	if ( redim ){
+		redimW = 300;
+		redimH = 120;
+		fafm.popup(arquivo, nome, features, posX, posY, redimW, redimH);
+	}else{
+		fafm.popup(arquivo, nome, features, posX, posY);
+	}
+}
+</script>
