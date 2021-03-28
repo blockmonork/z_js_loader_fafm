@@ -1,0 +1,34 @@
+/*
+styles for simpleImageViewer
+prefix s_i_v_
+*/
+.s_i_v_table {
+	border:0;
+	padding:0;
+	margin:0;
+	width:100%;
+}
+.s_i_v_td {
+	border:1px solid silver;
+	margin:0; 
+	background-color: white; 
+	font-size: 80%;
+}
+.s_i_v_div1 {
+	border: 1px solid gray;
+	margin: 0; 
+	background: silver;
+	-moz-background-clip: -moz-initial; 
+	-moz-background-origin: -moz-initial; 
+	-moz-background-inline-policy: -moz-initial; 
+	text-align: left; 
+	font-weight: bold;
+}
+.s_i_v_div2 {
+	border-left:1px solid gray;
+	padding: 5px; 
+	float: right; 
+	cursor: pointer; 
+	font-weight: bold; 
+	font-style: normal;
+}
